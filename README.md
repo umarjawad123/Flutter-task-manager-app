@@ -1,6 +1,6 @@
 # 🚀 Stride - Task Management App (Flutter)
 
-A feature-rich Flutter Task Manager application developed during Week 3 of my internship. The app focuses on CRUD operations, real-time task tracking, persistent storage, and a clean productivity-oriented UI.
+A feature-rich Flutter Task Manager application developed during Week 3 of my internship. The app focuses on CRUD operations, real-time task tracking, state management using Provider, persistent storage, and a clean productivity-oriented UI.
 
 ---
 
@@ -12,24 +12,27 @@ It includes task creation, editing, deletion, completion tracking, and persisten
 
 The app also provides a real-time statistics dashboard showing:
 
-* Total Tasks
-* Completed Tasks
-* Remaining Tasks
+- Total Tasks  
+- Completed Tasks  
+- Remaining Tasks  
+
+All UI updates are handled using **Provider-based state management**, ensuring a clean separation between UI and business logic.
 
 ---
 
 ## 🚀 Features
 
-* Splash screen with app branding ("Stride")
-* Add new tasks with title and optional description
-* Edit existing tasks
-* Delete tasks with confirmation dialog
-* Mark tasks as completed using checkbox
-* Real-time task statistics counter
-* Persistent storage using SharedPreferences
-* Data remains saved after app restart
-* Clean and responsive UI design
-* Dialog-based task management system
+- Splash screen with app branding ("Stride")
+- Add new tasks with title and optional description
+- Edit existing tasks
+- Delete tasks with confirmation dialog
+- Mark tasks as completed using checkbox
+- Real-time task statistics counter
+- Persistent storage using SharedPreferences
+- Data remains saved after app restart
+- Clean and responsive UI design
+- Dialog-based task management system
+- Centralized state management using Provider
 
 ---
 
@@ -83,42 +86,58 @@ The app also provides a real-time statistics dashboard showing:
 
 ## 🛠️ Tech Stack
 
-* Flutter
-* Dart
-* Material Design
-* SharedPreferences (Local Storage)
-* Stateful Widgets
-* Dialog-based UI interactions
+- Flutter  
+- Dart  
+- Material Design  
+- Provider (State Management)  
+- ChangeNotifier Architecture  
+- SharedPreferences (Local Storage)
 
 ---
 
 ## ⚙️ Functional Flow
 
-1. App launches with Splash Screen
-2. Tasks are loaded from SharedPreferences
-3. Home Page displays stored tasks
-4. User can add new tasks via dialog
-5. Tasks are stored locally using SharedPreferences
-6. User can edit, delete, or complete tasks
-7. All changes are saved automatically
-8. Counter updates in real time:
-
-   * Total Tasks
-   * Completed Tasks
-   * Remaining Tasks
+1. App launches with Splash Screen  
+2. Tasks are loaded from SharedPreferences via Provider  
+3. Task data is stored inside a central **TaskProvider (ChangeNotifier)**  
+4. Home Page listens to Provider for real-time updates  
+5. User adds new tasks via dialog  
+6. Provider updates task list and calls `notifyListeners()`  
+7. Tasks are saved persistently using SharedPreferences  
+8. User can edit, delete, or mark tasks as completed  
+9. UI automatically updates on state changes  
+10. Counter updates in real time:
+   - Total Tasks  
+   - Completed Tasks  
+   - Remaining Tasks  
 
 ---
 
 ## 🧠 Key Concepts Used
 
-* Stateful Widget management
-* setState() for UI updates
-* CRUD operations (Create, Read, Update, Delete)
-* SharedPreferences for local persistence
-* Dialogs (AlertDialog)
-* Checkbox state handling
-* Dynamic List rendering
-* Navigation & Pop operations
+- Provider state management (`ChangeNotifier`)
+- `notifyListeners()` for reactive UI updates
+- Separation of UI and business logic
+- CRUD operations (Create, Read, Update, Delete)
+- SharedPreferences for local persistence
+- Dialog-based interactions (AlertDialog)
+- Checkbox state management via Provider
+- Consumer / Provider.of usage for reactive rebuilds
+- Clean architecture principles
+
+---
+
+## 🏗️ Architecture Update
+
+### Before
+- StatefulWidget + setState()
+- UI and logic tightly coupled
+
+### After
+- Provider (ChangeNotifier-based architecture)
+- Centralized Task Management (TaskProvider)
+- UI reacts automatically to state changes
+- Clean separation of concerns
 
 ---
 
@@ -127,6 +146,10 @@ The app also provides a real-time statistics dashboard showing:
 ```text id="struct_w3_final"
 lib/
 ├── main.dart
+├── models/
+│   └── task_model.dart
+├── providers/
+│   └── task_provider.dart
 ├── screens/
 │   ├── splash_screen.dart
 │   └── home_page.dart
@@ -172,10 +195,12 @@ flutter run
 * Add due dates and reminders
 * Add animations for task transitions
 * Add dark mode support
+* Introduce Riverpod for advanced state management (optional upgrade)
 
 ---
 
 ## 👨‍💻 Author
 
 **Umar Jawad**
+
 Flutter Developer | BSCS Student
