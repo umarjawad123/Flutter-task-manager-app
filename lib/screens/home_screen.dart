@@ -131,6 +131,7 @@ class HomeScreen extends StatelessWidget {
                                 children: [
                                   Checkbox(
                                     activeColor: AppColors.accentOrange,
+                                    checkColor: Colors.white,
                                     value: task.isDone,
                                     onChanged: (value) {
                                       context.read<TaskProvider>().toggleTask(
