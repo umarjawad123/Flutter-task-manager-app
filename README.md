@@ -164,13 +164,13 @@ lib/
 Clone the repository:
 
 ```bash id="run_w3_final_1"
-git clone https://github.com/umarjawad123/stride-task-manager-app.git
+git clone https://github.com/umarjawad123/flutter-task-manager-app.git
 ```
 
 Navigate to project:
 
 ```bash id="run_w3_final_2"
-cd stride-task-manager-app
+cd flutter-task-manager-app
 ```
 
 Install dependencies:
