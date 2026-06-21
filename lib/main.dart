@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/screens/splash_screen.dart';
 import 'package:task_manager/utils/app_colors.dart';
+import 'package:provider/provider.dart';
+import 'providers/task_provider.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+
+  runApp(
+
+    ChangeNotifierProvider(
+
+      create: (_) => TaskProvider(),
+
+      child: const MyApp(),
+
+    ),
+
+  );
+
 }
 
 class MyApp extends StatelessWidget {
